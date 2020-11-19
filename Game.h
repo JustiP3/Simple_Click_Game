@@ -1,8 +1,10 @@
 #pragma once
+
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/System.hpp>
+
 class Game
 {
 private:
@@ -21,7 +23,11 @@ public:
 	Game();
 	virtual ~Game();
 
+	//Accessors 
+	const bool getWindowIsOpen() const;
+
 	// Public functions 
+	void updateEvents();
 	void update();
 	void render();
 };

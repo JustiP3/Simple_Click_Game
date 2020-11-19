@@ -31,8 +31,39 @@ Game::~Game()
 
 void Game::update()
 {
+	this->updateEvents();
 }
 
 void Game::render()
 {
+	this->window->clear(sf::Color::Blue);
+	this->window->display();
+}
+
+ //Accessors
+
+const bool Game::getWindowIsOpen() const
+{
+	return this->window->isOpen();
+}
+
+void Game::updateEvents()
+{
+	//Event Polling
+
+	while (this->window->pollEvent(this->event))
+	{
+		switch (this->event.type)
+		{
+		case sf::Event::Closed:
+			this->window->close();
+			break;
+		case sf::Event::KeyPressed :
+			if (this->event.key.code == sf::Keyboard::Escape)
+			{
+				this->window->close();
+			}
+			break;
+		}
+	}
 }

@@ -1,39 +1,18 @@
 #include <iostream>
 #include "Game.h" 
+
 int main()
 {
  
-    // Configure Window
-    sf::RenderWindow window(sf::VideoMode(640, 580), "Simple Click Game", sf::Style::Titlebar | sf::Style::Close);
+    //Initialize Game
 
-    //Test Circle Object
-    sf::CircleShape shape(100.f);
-    shape.setFillColor(sf::Color::Green);
+    Game game;
 
-    while (window.isOpen())
+    while (game.getWindowIsOpen())
     {
-        sf::Event event;
-        while (window.pollEvent(event))
-        {
-            switch (event.type)
-            {
-            case sf::Event::Closed:
-                window.close();
-                break;
-            case sf::Event::KeyPressed:
-                if (event.key.code == sf::Keyboard::Escape)
-                    window.close();
-                break;
-            }
-        }
-           
+        game.update();
 
-        //Update
-
-        //Render 
-        window.clear();
-        window.draw(shape);
-        window.display();
+        game.render();     
     }
 
     // End of application 
