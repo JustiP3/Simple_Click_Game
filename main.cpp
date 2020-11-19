@@ -6,7 +6,10 @@
 int main()
 {
  
-    sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
+    // Configure Window
+    sf::RenderWindow window(sf::VideoMode(640, 580), "Simple Click Game", sf::Style::Titlebar | sf::Style::Close);
+
+    //Test Circle Object
     sf::CircleShape shape(100.f);
     shape.setFillColor(sf::Color::Green);
 
@@ -15,14 +18,27 @@ int main()
         sf::Event event;
         while (window.pollEvent(event))
         {
-            if (event.type == sf::Event::Closed)
+            switch (event.type)
+            {
+            case sf::Event::Closed:
                 window.close();
+                break;
+            case sf::Event::KeyPressed:
+                if (event.key.code == sf::Keyboard::Escape)
+                    window.close();
+                break;
+            }
         }
+           
 
+        //Update
+
+        //Render 
         window.clear();
         window.draw(shape);
         window.display();
     }
 
+    // End of application 
     return 0;
 }
