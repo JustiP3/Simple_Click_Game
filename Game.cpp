@@ -44,6 +44,14 @@ Game::~Game()
 void Game::update()
 {
 	this->updateEvents();
+
+	//Update Mouse Position
+
+	//relative to screen
+	//std::cout << "Mouse Position: " << sf::Mouse::getPosition().x << " " << sf::Mouse::getPosition().y << "\n";
+
+	//relative to window 
+	std::cout << "Mouse Position: " << sf::Mouse::getPosition(*this->window).x << " " << sf::Mouse::getPosition(*this->window).y << "\n";
 }
 
 void Game::render()
