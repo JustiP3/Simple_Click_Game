@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/System.hpp>
+#include <vector>
 
 class Game
 {
@@ -14,8 +15,12 @@ private:
 	sf::Event event; 
 	sf::VideoMode videoMode;
 
+	//Mouse Position
+	sf::Vector2i mousePosWindow;
+
 	//Game Object
 	sf::RectangleShape enemy;
+	std::vector<sf::RectangleShape> enemies;
 
 	//Private functions 
 	void initVariables();
@@ -32,6 +37,7 @@ public:
 
 	// Public functions 
 	void updateEvents();
+	void updateMousePositions();
 	void update();
 	void render();
 };

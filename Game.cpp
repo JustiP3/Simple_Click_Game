@@ -44,6 +44,7 @@ Game::~Game()
 void Game::update()
 {
 	this->updateEvents();
+	this->updateMousePositions();
 
 	//Update Mouse Position
 
@@ -62,6 +63,12 @@ void Game::render()
 	this->window->draw(this->enemy);
 
 	this->window->display();
+}
+
+void Game::updateMousePositions()
+{
+	//Updates mouse position relative to window (Vector2i)
+	this->mousePosWindow = sf::Mouse::getPosition(*this->window);
 }
 
  //Accessors
