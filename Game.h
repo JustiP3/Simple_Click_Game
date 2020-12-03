@@ -22,6 +22,12 @@ private:
 	sf::RectangleShape enemy;
 	std::vector<sf::RectangleShape> enemies;
 
+	//Game Logic
+	int points;
+	float enemySpawnTimer;
+	float enemySpawnTimerMax;
+	int maxEnemies;
+
 	//Private functions 
 	void initVariables();
 	void initWindow();
@@ -36,9 +42,13 @@ public:
 	const bool getWindowIsOpen() const;
 
 	// Public functions 
+	void spawnEnemy();
+
 	void updateEvents();
 	void updateMousePositions();
 	void update();
+	void updateEnemies();
 	void render();
+	void renderEnemies(); 
 };
 

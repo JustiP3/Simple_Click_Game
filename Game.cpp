@@ -5,6 +5,12 @@
 void Game::initVariables()
 {
 	this->window = nullptr;
+
+	//Game Logic 
+	this->points = 0;
+	this->enemySpawnTimer = 0.f;
+	this->enemySpawnTimerMax = 1000.f;
+	this->maxEnemies = 5;
 }
 
 void Game::initEnemies()
@@ -14,6 +20,8 @@ void Game::initEnemies()
 	this->enemy.setFillColor(sf::Color::Blue);
 	this->enemy.setOutlineColor(sf::Color::White);
 	this->enemy.setOutlineThickness(1.f);
+
+
 }
 
 void Game::initWindow()
@@ -22,7 +30,7 @@ void Game::initWindow()
 	this->videoMode.width = 800;
 	this->window = new sf::RenderWindow(this->videoMode, "Simple Click Game", sf::Style::Titlebar | sf::Style::Close);
 
-	this->window->setFramerateLimit(144);
+	this->window->setFramerateLimit(60);
 }
 
 // Constructors / Destructors
@@ -45,6 +53,7 @@ void Game::update()
 {
 	this->updateEvents();
 	this->updateMousePositions();
+	this->updateEnemies();
 
 	//Update Mouse Position
 
@@ -60,8 +69,7 @@ void Game::render()
 	this->window->clear();
 
 	//Draw Game Object
-	this->window->draw(this->enemy);
-
+	this->renderEnemies();
 	this->window->display();
 }
 
@@ -69,6 +77,20 @@ void Game::updateMousePositions()
 {
 	//Updates mouse position relative to window (Vector2i)
 	this->mousePosWindow = sf::Mouse::getPosition(*this->window);
+}
+
+void Game::updateEnemies()
+{
+}
+
+void Game::renderEnemies()
+{
+}
+
+
+void Game::spawnEnemy()
+{
+
 }
 
  //Accessors
