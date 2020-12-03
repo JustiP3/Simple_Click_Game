@@ -7,11 +7,22 @@ void Game::initVariables()
 	this->window = nullptr;
 }
 
+void Game::initEnemies()
+{
+	this->enemy.setPosition(10.f, 10.f);
+	this->enemy.setSize(sf::Vector2f(100.f, 100.f));
+	this->enemy.setFillColor(sf::Color::Blue);
+	this->enemy.setOutlineColor(sf::Color::White);
+	this->enemy.setOutlineThickness(1.f);
+}
+
 void Game::initWindow()
 {
 	this->videoMode.height = 600;
 	this->videoMode.width = 800;
 	this->window = new sf::RenderWindow(this->videoMode, "Simple Click Game", sf::Style::Titlebar | sf::Style::Close);
+
+	this->window->setFramerateLimit(144);
 }
 
 // Constructors / Destructors
@@ -20,6 +31,7 @@ Game::Game()
 {
 	this->initVariables();
 	this->initWindow();
+	this->initEnemies();
 }
 
 Game::~Game()
@@ -36,7 +48,11 @@ void Game::update()
 
 void Game::render()
 {
-	this->window->clear(sf::Color::Blue);
+	this->window->clear();
+
+	//Draw Game Object
+	this->window->draw(this->enemy);
+
 	this->window->display();
 }
 

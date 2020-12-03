@@ -9,14 +9,18 @@ class Game
 {
 private:
 	//Private Variables
+	//Window
 	sf::RenderWindow* window;
 	sf::Event event; 
 	sf::VideoMode videoMode;
 
+	//Game Object
+	sf::RectangleShape enemy;
+
 	//Private functions 
 	void initVariables();
 	void initWindow();
-
+	void initEnemies();
 public:
 
 	// Constructors / Destructors
