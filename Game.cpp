@@ -80,7 +80,26 @@ void Game::updateMousePositions()
 }
 
 void Game::updateEnemies()
+/*
+Updates the Enemy Spawn Timer and Spawns an enemy when the enemy count is less than max. 
+*/
 {
+	//Update timer for spawning enemies
+	if (this->enemies.size() < this->maxEnemies)
+	{
+		if (this->enemySpawnTimer >= this->enemySpawnTimerMax)
+		{
+			//Spawn Enemy and reset timer
+			this->spawnEnemy();
+			this->enemySpawnTimer = 0;
+		}
+		else
+		{
+			this->enemySpawnTimer += 1.f;
+		}
+	}
+	
+		
 }
 
 void Game::renderEnemies()
