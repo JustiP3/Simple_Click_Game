@@ -95,17 +95,35 @@ Removes enemy at the bottom of the screen.
 		}
 	}
 
-	//Move enemies downward on the screen.
 
+	//Itereate and operate on each enemy
 	for (int i = 0; i < this->enemies.size(); i++) {
+
+		bool deleted = false;
+
+		//move enemy down
 		this->enemies[i].move(0.f, 1.f);
 
 		//checked if clicked upon
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
 			if (this->enemies[i].getGlobalBounds().contains(this->mousePosView))
 			{
-				this->enemies.erase(this->enemies.begin() + i);
+				deleted = true; 
+
+				//gain points
+				// ...
 			}
+		}
+
+		//check if box hit bottom of screen
+		if (this->enemies[i].getPosition().y > this->window->getSize().y - this->enemies[i].getSize().y)
+		{
+			deleted = true; 
+		}
+
+		if (deleted == true)
+		{
+			this->enemies.erase(this->enemies.begin() + i);
 		}
 	}
 	
