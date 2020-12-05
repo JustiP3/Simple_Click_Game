@@ -5,6 +5,7 @@
 #include <SFML/Window.hpp>
 #include <SFML/System.hpp>
 #include <vector>
+#include <ctime>
 
 class Game
 {

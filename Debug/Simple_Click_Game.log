@@ -1,2 +1,3 @@
 ﻿  Game.cpp
+C:\Users\justi\source\repos\Simple_Click_Game\Simple_Click_Game\Game.cpp(82,27): warning C4018: '<': signed/unsigned mismatch
   Simple_Click_Game.vcxproj -> C:\Users\justi\source\repos\Simple_Click_Game\Debug\Simple_Click_Game.exe

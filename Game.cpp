@@ -9,7 +9,7 @@ void Game::initVariables()
 	//Game Logic 
 	this->points = 0;
 	this->enemySpawnTimer = 0.f;
-	this->enemySpawnTimerMax = 1000.f;
+	this->enemySpawnTimerMax = 10.f;
 	this->maxEnemies = 5;
 }
 
@@ -54,14 +54,6 @@ void Game::update()
 	this->updateEvents();
 	this->updateMousePositions();
 	this->updateEnemies();
-
-	//Update Mouse Position
-
-	//relative to screen
-	//std::cout << "Mouse Position: " << sf::Mouse::getPosition().x << " " << sf::Mouse::getPosition().y << "\n";
-
-	//relative to window 
-	std::cout << "Mouse Position: " << sf::Mouse::getPosition(*this->window).x << " " << sf::Mouse::getPosition(*this->window).y << "\n";
 }
 
 void Game::render()
@@ -82,21 +74,30 @@ void Game::updateMousePositions()
 void Game::updateEnemies()
 /*
 Updates the Enemy Spawn Timer and Spawns an enemy when the enemy count is less than max. 
+Moves enemy position downwards.
+Removes enemy at the bottom of the screen. 
 */
 {
-	//Update timer for spawning enemies
+	
 	if (this->enemies.size() < this->maxEnemies)
 	{
 		if (this->enemySpawnTimer >= this->enemySpawnTimerMax)
 		{
 			//Spawn Enemy and reset timer
 			this->spawnEnemy();
-			this->enemySpawnTimer = 0;
+			this->enemySpawnTimer = 0.f;
 		}
 		else
 		{
+			//Update timer
 			this->enemySpawnTimer += 1.f;
 		}
+	}
+
+	//Move enemies downward on the screen.
+
+	for (auto &e : this->enemies) {
+		e.move(0.f, 1.f);
 	}
 	
 		
@@ -104,12 +105,26 @@ Updates the Enemy Spawn Timer and Spawns an enemy when the enemy count is less t
 
 void Game::renderEnemies()
 {
+	//Render each enemy
+	for (auto &e : this->enemies) {
+		this->window->draw(e);
+	}
 }
 
 
 void Game::spawnEnemy()
 {
+	/*
+	Add enemy with random color and position to vector
+	*/
+	this->enemy.setPosition(
+		static_cast<float>(rand() % static_cast<int>(this->window->getSize().x - this->enemy.getSize().x)),
+		0.f
+	);
 
+	this->enemy.setFillColor(sf::Color::Blue);
+
+	this->enemies.push_back(this->enemy);
 }
 
  //Accessors
