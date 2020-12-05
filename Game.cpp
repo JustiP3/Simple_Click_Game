@@ -69,6 +69,7 @@ void Game::updateMousePositions()
 {
 	//Updates mouse position relative to window (Vector2i)
 	this->mousePosWindow = sf::Mouse::getPosition(*this->window);
+	this->mousePosView = this->window->mapPixelToCoords(this->mousePosWindow);
 }
 
 void Game::updateEnemies()
