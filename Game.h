@@ -18,6 +18,7 @@ private:
 
 	//Mouse Position
 	sf::Vector2i mousePosWindow;
+	sf::Vector2f mousePosView;
 
 	//Game Object
 	sf::RectangleShape enemy;

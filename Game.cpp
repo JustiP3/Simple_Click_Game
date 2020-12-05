@@ -97,8 +97,16 @@ Removes enemy at the bottom of the screen.
 
 	//Move enemies downward on the screen.
 
-	for (auto &e : this->enemies) {
-		e.move(0.f, 1.f);
+	for (int i = 0; i < this->enemies.size(); i++) {
+		this->enemies[i].move(0.f, 1.f);
+
+		//checked if clicked upon
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+			if (this->enemies[i].getGlobalBounds().contains(this->mousePosView))
+			{
+				this->enemies.erase(this->enemies.begin() + i);
+			}
+		}
 	}
 	
 		
