@@ -8,9 +8,15 @@ void Game::initVariables()
 
 	//Game Logic 
 	this->points = 0;
+	this->health = 5;
 	this->enemySpawnTimer = 0.f;
 	this->enemySpawnTimerMax = 10.f;
 	this->maxEnemies = 5;
+
+	if (!font.loadFromFile("arial.ttf"))
+	{
+		std::cout << "Error loading font";
+	}
 }
 
 void Game::initEnemies()
@@ -29,6 +35,24 @@ void Game::initWindow()
 	this->videoMode.height = 600;
 	this->videoMode.width = 800;
 	this->window = new sf::RenderWindow(this->videoMode, "Simple Click Game", sf::Style::Titlebar | sf::Style::Close);
+
+
+
+	// select the font
+	this->scoreBoardHealth.setFont(font); // font is a sf::Font
+
+	// set the string to display
+	this->scoreBoardHealth.setString("Hello world");
+
+	// set the character size
+	this->scoreBoardHealth.setCharacterSize(24); // in pixels, not points!
+
+	// set the color
+	this->scoreBoardHealth.setFillColor(sf::Color::Red);
+
+	// set the text style
+	this->scoreBoardHealth.setStyle(sf::Text::Bold | sf::Text::Underlined);
+		
 
 	this->window->setFramerateLimit(60);
 }
@@ -54,6 +78,7 @@ void Game::update()
 	this->updateEvents();
 	this->updateMousePositions();
 	this->updateEnemies();
+	//std::cout << "Points: " << points << "\n";
 }
 
 void Game::render()
@@ -62,6 +87,7 @@ void Game::render()
 
 	//Draw Game Object
 	this->renderEnemies();
+	this->window->draw(this->scoreBoardHealth);
 	this->window->display();
 }
 
@@ -111,14 +137,19 @@ Removes enemy at the bottom of the screen.
 				deleted = true; 
 
 				//gain points
-				// ...
+				points += 10;
 			}
 		}
 
 		//check if box hit bottom of screen
 		if (this->enemies[i].getPosition().y > this->window->getSize().y - this->enemies[i].getSize().y)
 		{
-			deleted = true; 
+			deleted = true;  
+
+			//Lose points if boxes hit bottom of screen
+
+			points -= 10; 
+			health--;
 		}
 
 		if (deleted == true)

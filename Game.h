@@ -23,12 +23,17 @@ private:
 	//Game Object
 	sf::RectangleShape enemy;
 	std::vector<sf::RectangleShape> enemies;
+	sf::Text scoreBoardHealth;
+	sf::Text scoreBoardPoints;
+	sf::Font font;
 
 	//Game Logic
 	int points;
+	int health;
 	float enemySpawnTimer;
 	float enemySpawnTimerMax;
 	int maxEnemies;
+	bool mouseHeld;
 
 	//Private functions 
 	void initVariables();

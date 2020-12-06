@@ -1,4 +1,6 @@
 ﻿  Game.cpp
-C:\Users\justi\source\repos\Simple_Click_Game\Simple_Click_Game\Game.cpp(83,27): warning C4018: '<': signed/unsigned mismatch
-C:\Users\justi\source\repos\Simple_Click_Game\Simple_Click_Game\Game.cpp(100,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\justi\source\repos\Simple_Click_Game\Simple_Click_Game\Game.cpp(109,27): warning C4018: '<': signed/unsigned mismatch
+C:\Users\justi\source\repos\Simple_Click_Game\Simple_Click_Game\Game.cpp(126,20): warning C4018: '<': signed/unsigned mismatch
+  main.cpp
+  Generating Code...
   Simple_Click_Game.vcxproj -> C:\Users\justi\source\repos\Simple_Click_Game\Debug\Simple_Click_Game.exe
