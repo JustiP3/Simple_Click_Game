@@ -10,7 +10,7 @@ int main()
 
     Game game;
 
-    while (game.getWindowIsOpen())
+    while (game.getWindowIsOpen() && !game.getEndGame())
     {
         game.update();
 

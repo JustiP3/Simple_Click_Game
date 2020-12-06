@@ -177,6 +177,17 @@ void Game::renderEnemies()
 	}
 }
 
+const bool Game::getEndGame() const
+{
+	if (this->endGame == true)
+	{
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
 
 void Game::spawnEnemy()
 {
