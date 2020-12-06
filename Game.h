@@ -28,6 +28,7 @@ private:
 	sf::Font font;
 
 	//Game Logic
+	bool endGame;
 	int points;
 	int health;
 	float enemySpawnTimer;

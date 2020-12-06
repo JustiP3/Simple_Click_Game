@@ -7,6 +7,7 @@ void Game::initVariables()
 	this->window = nullptr;
 
 	//Game Logic 
+	this->endGame = false; 
 	this->points = 0;
 	this->health = 5;
 	this->enemySpawnTimer = 0.f;
@@ -76,9 +77,12 @@ Game::~Game()
 void Game::update()
 {
 	this->updateEvents();
-	this->updateMousePositions();
-	this->updateEnemies();
-	//std::cout << "Points: " << points << "\n";
+	if (this->endGame == false)
+	{
+		this->updateMousePositions();
+		this->updateEnemies();
+	}
+	
 }
 
 void Game::render()
@@ -150,6 +154,10 @@ Removes enemy at the bottom of the screen.
 
 			points -= 10; 
 			health--;
+			if (health <= 0)
+			{
+				endGame = true; 
+			}
 		}
 
 		if (deleted == true)
