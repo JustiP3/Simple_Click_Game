@@ -1,11 +1,15 @@
 #pragma once
 
 #include <iostream>
+#include <sstream>
+#include <vector>
+#include <ctime>
+
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/System.hpp>
-#include <vector>
-#include <ctime>
+
+
 
 class Game
 {
@@ -29,8 +33,6 @@ private:
 	//Game Object
 	sf::RectangleShape enemy;
 	std::vector<sf::RectangleShape> enemies;
-	sf::Text scoreBoardHealth;
-	sf::Text scoreBoardPoints;
 
 	//Game Logic
 	bool endGame;

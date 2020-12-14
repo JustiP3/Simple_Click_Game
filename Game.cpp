@@ -28,7 +28,7 @@ void Game::initFonts()
 void Game::initText()
 {
 	this->uiText.setFont(this->font);
-	this->uiText.setCharacterSize(12);
+	this->uiText.setCharacterSize(24);
 	this->uiText.setFillColor(sf::Color::White);
 	this->uiText.setString("init");
 }
@@ -50,22 +50,6 @@ void Game::initWindow()
 	this->videoMode.width = 800;
 	this->window = new sf::RenderWindow(this->videoMode, "Simple Click Game", sf::Style::Titlebar | sf::Style::Close);
 
-
-
-	// select the font
-	this->scoreBoardHealth.setFont(font); // font is a sf::Font
-
-	// set the string to display
-	this->scoreBoardHealth.setString("Hello world");
-
-	// set the character size
-	this->scoreBoardHealth.setCharacterSize(24); // in pixels, not points!
-
-	// set the color
-	this->scoreBoardHealth.setFillColor(sf::Color::Red);
-
-	// set the text style
-	this->scoreBoardHealth.setStyle(sf::Text::Bold | sf::Text::Underlined);
 		
 
 	this->window->setFramerateLimit(60);
@@ -77,6 +61,8 @@ Game::Game()
 {
 	this->initVariables();
 	this->initWindow();
+	this->initFonts();
+	this->initText();
 	this->initEnemies();
 }
 
@@ -91,6 +77,12 @@ Game::~Game()
 
 void Game::updateText()
 {
+	std::stringstream ss;
+
+	ss << "Points: " << this->points << "\n" 
+		<< " Health: " << this->health;
+
+	this->uiText.setString(ss.str());
 }
 
 void Game::updateMousePositions()
@@ -175,6 +167,7 @@ void Game::update()
 	{
 		this->updateMousePositions();
 		this->updateEnemies();
+		this->updateText();
 	}
 
 }
@@ -201,7 +194,6 @@ void Game::render()
 	//Draw Game Object
 	this->renderEnemies(*this->window);
 	this->renderText(*this->window);
-	this->window->draw(this->scoreBoardHealth);
 	this->window->display();
 }
 
