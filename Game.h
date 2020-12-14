@@ -23,6 +23,9 @@ private:
 	//Resources
 	sf::Font font; 
 
+	//Text
+	sf::Text uiText;
+
 	//Game Object
 	sf::RectangleShape enemy;
 	std::vector<sf::RectangleShape> enemies;
@@ -35,11 +38,13 @@ private:
 	int health;
 	float enemySpawnTimer;
 	float enemySpawnTimerMax;
-	int maxEnemies;
+	unsigned int maxEnemies;
 
 	//Private functions 
 	void initVariables();
 	void initWindow();
+	void initFonts();
+	void initText();
 	void initEnemies();
 public:
 
@@ -56,9 +61,13 @@ public:
 
 	void updateEvents();
 	void updateMousePositions();
-	void update();
 	void updateEnemies();
+	void updateText();
+	void update();
+	
+	void renderText(sf::RenderTarget& target);
+	void renderEnemies(sf::RenderTarget& target);
 	void render();
-	void renderEnemies(); 
+	
 };
 

@@ -126,7 +126,7 @@ Removes enemy at the bottom of the screen.
 
 
 	//Itereate and operate on each enemy
-	for (int i = 0; i < this->enemies.size(); i++) {
+	for (unsigned int i = 0; i < this->enemies.size(); i++) {
 
 		bool deleted = false;
 
@@ -181,16 +181,17 @@ void Game::update()
 
 
 
-void Game::renderEnemies()
+void Game::renderEnemies(sf::RenderTarget& target)
 {
 	//Render each enemy
 	for (auto &e : this->enemies) {
-		this->window->draw(e);
+		target.draw(e);
 	}
 }
 
-void Game::renderText()
+void Game::renderText(sf::RenderTarget& target)
 {
+	target.draw(this->uiText);
 }
 
 void Game::render()
@@ -198,7 +199,8 @@ void Game::render()
 	this->window->clear();
 
 	//Draw Game Object
-	this->renderEnemies();
+	this->renderEnemies(*this->window);
+	this->renderText(*this->window);
 	this->window->draw(this->scoreBoardHealth);
 	this->window->display();
 }
