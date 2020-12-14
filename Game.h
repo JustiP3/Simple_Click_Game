@@ -48,6 +48,7 @@ public:
 
 	//Accessors 
 	const bool getWindowIsOpen() const;
+	const bool getEndGame() const;
 
 	// Public functions 
 	void spawnEnemy();
