@@ -14,10 +14,23 @@ void Game::initVariables()
 	this->enemySpawnTimerMax = 10.f;
 	this->maxEnemies = 5;
 
-	if (!font.loadFromFile("arial.ttf"))
+}
+
+void Game::initFonts()
+{
+	if (!this->font.loadFromFile("/Fonts/arial.ttf"))
 	{
-		std::cout << "Error loading font";
+		std::cout << "ERROR::GAME::INITFONTS::Error loading font";
 	}
+}
+
+
+void Game::initText()
+{
+	this->uiText.setFont(this->font);
+	this->uiText.setCharacterSize(12);
+	this->uiText.setFillColor(sf::Color::White);
+	this->uiText.setString("init");
 }
 
 void Game::initEnemies()
@@ -74,25 +87,10 @@ Game::~Game()
 
 // Public functions
 
-void Game::update()
-{
-	this->updateEvents();
-	if (this->endGame == false)
-	{
-		this->updateMousePositions();
-		this->updateEnemies();
-	}
-	
-}
 
-void Game::render()
-{
-	this->window->clear();
 
-	//Draw Game Object
-	this->renderEnemies();
-	this->window->draw(this->scoreBoardHealth);
-	this->window->display();
+void Game::updateText()
+{
 }
 
 void Game::updateMousePositions()
@@ -101,6 +99,7 @@ void Game::updateMousePositions()
 	this->mousePosWindow = sf::Mouse::getPosition(*this->window);
 	this->mousePosView = this->window->mapPixelToCoords(this->mousePosWindow);
 }
+
 
 void Game::updateEnemies()
 /*
@@ -169,6 +168,19 @@ Removes enemy at the bottom of the screen.
 		
 }
 
+void Game::update()
+{
+	this->updateEvents();
+	if (this->endGame == false)
+	{
+		this->updateMousePositions();
+		this->updateEnemies();
+	}
+
+}
+
+
+
 void Game::renderEnemies()
 {
 	//Render each enemy
@@ -176,6 +188,21 @@ void Game::renderEnemies()
 		this->window->draw(e);
 	}
 }
+
+void Game::renderText()
+{
+}
+
+void Game::render()
+{
+	this->window->clear();
+
+	//Draw Game Object
+	this->renderEnemies();
+	this->window->draw(this->scoreBoardHealth);
+	this->window->display();
+}
+
 
 const bool Game::getEndGame() const
 {
