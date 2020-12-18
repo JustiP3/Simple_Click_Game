@@ -18,7 +18,7 @@ void Game::initVariables()
 
 void Game::initFonts()
 {
-	if (!this->font.loadFromFile("/Fonts/arial.ttf"))
+	if (!this->font.loadFromFile("arial.ttf"))
 	{
 		std::cout << "ERROR::GAME::INITFONTS::Error loading font";
 	}
